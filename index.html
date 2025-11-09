@@ -3,82 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI News Story Visualizer - Climate Change Analysis</title>
+    <title>Interactive AI News Visualizer</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>📰 AI News Story Visualizer</h1>
-            <p>Automated news analysis with AI-powered insights and visualizations</p>
-            <div class="stats-bar">
-                <div class="stat">
-                    <span class="stat-value" id="total-articles">--</span>
-                    <span class="stat-label">Articles Analyzed</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="data-points">--</span>
-                    <span class="stat-label">Data Points Extracted</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value" id="countries-count">--</span>
-                    <span class="stat-label">Countries Mentioned</span>
-                </div>
+    <div class="app-container">
+        <!-- LEFT SIDEBAR - FILTERS & CONTROLS -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>🎛️ Controls</h2>
             </div>
-        </header>
-
-        <!-- AI Summary Section -->
-        <section class="summary-section">
-            <h2>🤖 AI-Generated Story Summary</h2>
-            <div class="summary-box" id="ai-summary">
-                Loading summary...
-            </div>
-        </section>
-
-        <!-- Visualizations Grid -->
-        <section class="visualizations">
-            <h2>📊 Interactive Visualizations</h2>
             
-            <div class="viz-grid">
-                <div class="viz-card">
-                    <h3>Article Sources Distribution</h3>
-                    <div id="viz-sources" class="plotly-chart"></div>
-                </div>
-                
-                <div class="viz-card">
-                    <h3>Publication Timeline</h3>
-                    <div id="viz-timeline" class="plotly-chart"></div>
-                </div>
-                
-                <div class="viz-card full-width">
-                    <h3>Geographic Coverage Map</h3>
-                    <div id="viz-geography" class="plotly-chart"></div>
-                </div>
-                
-                <div class="viz-card">
-                    <h3>Data Types in Articles</h3>
-                    <div id="viz-number-types" class="plotly-chart"></div>
+            <!-- Topic Selection -->
+            <div class="filter-section">
+                <h3>📰 Select Topic</h3>
+                <div class="topic-buttons" id="topic-selector">
+                    <!-- Generated dynamically -->
                 </div>
             </div>
-        </section>
-
-        <!-- Articles List -->
-        <section class="articles-section">
-            <h2>📑 Analyzed Articles</h2>
-            <div id="articles-list" class="articles-grid">
-                <!-- Articles will be inserted here -->
+            
+            <!-- Date Range Filter -->
+            <div class="filter-section">
+                <h3>📅 Date Range</h3>
+                <div class="date-display" id="date-range">Loading...</div>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <p>Built with NewsAPI, Hugging Face AI, and Plotly</p>
-            <p>Data generated: <span id="generation-date">--</span></p>
-        </footer>
+            
+            <!-- Source Filter -->
+            <div class="filter-section">
+                <h3>📡 Filter by Source</h3>
+                <select id="source-filter" class="filter-select">
+                    <option value="all">All Sources</option>
+                </select>
+            </div>
+            
+            <!-- Country Filter -->
+            <div class="filter-section">
+                <h3>🌍 Filter by Country</h3>
+                <select id="country-filter" class="filter-select">
+                    <option value="all">All Countries</option>
+                </select>
+            </div>
+            
+            <!-- Stats Display -->
+            <div class="stats-panel">
+                <h3>📊 Current Stats</h3>
+                <div class="stat-item">
+                    <span class="stat-label">Articles:</span>
+                    <span class="stat-value" id="stat-articles">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Sources:</span>
+                    <span class="stat-value" id="stat-sources">--</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Countries:</span>
+                    <span class="stat-value" id="stat-countries">--</span>
+                </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <button class="reset-btn" id="reset-filters">
+                🔄 Reset Filters
+            </button>
+        </aside>
+        
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <h1>📰 Interactive AI News Visualizer</h1>
+                <p class="subtitle">Real-time news analysis with AI-powered insights</p>
+                <div class="current-topic" id="current-topic-display">
+                    Select a topic to begin
+                </div>
+            </header>
+            
+            <!-- AI Summary -->
+            <section class="summary-card">
+                <h2>🤖 AI-Generated Summary</h2>
+                <div class="summary-text" id="ai-summary">
+                    Select a topic from the left sidebar to see AI-generated summaries...
+                </div>
+            </section>
+            
+            <!-- Visualizations Grid -->
+            <section class="viz-section">
+                <h2>📊 Interactive Visualizations</h2>
+                <div class="viz-grid">
+                    <div class="viz-card">
+                        <h3>Top News Sources</h3>
+                        <div id="viz-sources" class="chart-container"></div>
+                    </div>
+                    
+                    <div class="viz-card">
+                        <h3>Publication Timeline</h3>
+                        <div id="viz-timeline" class="chart-container"></div>
+                    </div>
+                    
+                    <div class="viz-card full-width">
+                        <h3>Geographic Coverage</h3>
+                        <div id="viz-geography" class="chart-container"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Articles Grid -->
+            <section class="articles-section">
+                <h2>📑 Articles (<span id="article-count">0</span>)</h2>
+                <div id="articles-grid" class="articles-grid">
+                    <!-- Articles populated dynamically -->
+                </div>
+            </section>
+        </main>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
