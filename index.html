@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Story Visualizer - Climate Change Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📰 AI News Story Visualizer</h1>
+            <p>Automated news analysis with AI-powered insights and visualizations</p>
+            <div class="stats-bar">
+                <div class="stat">
+                    <span class="stat-value" id="total-articles">--</span>
+                    <span class="stat-label">Articles Analyzed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="data-points">--</span>
+                    <span class="stat-label">Data Points Extracted</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="countries-count">--</span>
+                    <span class="stat-label">Countries Mentioned</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- AI Summary Section -->
+        <section class="summary-section">
+            <h2>🤖 AI-Generated Story Summary</h2>
+            <div class="summary-box" id="ai-summary">
+                Loading summary...
+            </div>
+        </section>
+
+        <!-- Visualizations Grid -->
+        <section class="visualizations">
+            <h2>📊 Interactive Visualizations</h2>
+            
+            <div class="viz-grid">
+                <div class="viz-card">
+                    <h3>Article Sources Distribution</h3>
+                    <div id="viz-sources" class="plotly-chart"></div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3>Publication Timeline</h3>
+                    <div id="viz-timeline" class="plotly-chart"></div>
+                </div>
+                
+                <div class="viz-card full-width">
+                    <h3>Geographic Coverage Map</h3>
+                    <div id="viz-geography" class="plotly-chart"></div>
+                </div>
+                
+                <div class="viz-card">
+                    <h3>Data Types in Articles</h3>
+                    <div id="viz-number-types" class="plotly-chart"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles List -->
+        <section class="articles-section">
+            <h2>📑 Analyzed Articles</h2>
+            <div id="articles-list" class="articles-grid">
+                <!-- Articles will be inserted here -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>Built with NewsAPI, Hugging Face AI, and Plotly</p>
+            <p>Data generated: <span id="generation-date">--</span></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
